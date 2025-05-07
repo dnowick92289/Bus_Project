@@ -142,8 +142,7 @@ class BusMonitorApp:
 			if next_input == "1":
 				print("Set new temp value (range 58-75 degrees F) and press ENTER\n")
 				new_temp = input()
-			elif next_input == "0":
-				self.inside_temperature_menu()
+
 				try:
 					new_temp = int(new_temp)
 					if 58 <= new_temp <= 75:
@@ -165,6 +164,8 @@ class BusMonitorApp:
 				except ValueError:
 					print("Please enter a valid number.")
 					self.inside_temperature_menu()
+			elif next_input == "0":
+				self.inside_temperature_menu()
 			self.inside_temperature_menu()
 		elif user_input == "3":
 			self.go_back()
@@ -300,7 +301,9 @@ class BusMonitorApp:
 			print("Welcome to the Raspberry Pi connection Wizard"
 				  "Make sure your Raspberry Pi is powered on\n"
 				  "Once confirmed, enter the Raspberry Pi's IP address and press ENTER")
-			print(f"Attempting to connect to {rand_IP}\n"
+			user_input = input()
+			if user_input == "":
+				print(f"Attempting to connect to {rand_IP}\n"
 				  "You're now connected tot the Raspberry Pi Bus Network!\n"
 				  "Press ENTER to return to MAIN menu \n"
 				  "Press 1 to go back\n")
